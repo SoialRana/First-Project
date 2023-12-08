@@ -1,0 +1,23 @@
+<!-- return_book.html -->
+{% extends 'base.html' %}
+
+{% block title %}Return Book{% endblock %}
+
+{% block content %}
+    <h1>Return Book</h1>
+    <form method="post">
+        {% csrf_token %}
+        <!-- Add input fields for book details, e.g., book title and author -->
+        <label for="book_title">Book Title:</label>
+        <input type="text" name="book_title" id="book_title" required>
+        
+        <label for="book_author">Book Author:</label>
+        <input type="text" name="book_author" id="book_author" required>
+
+        <!-- Optionally, add an input field for the book review -->
+        <label for="review_content">Book Review:</label>
+        <textarea name="review_content" id="review_content"></textarea>
+
+        <button type="submit">Return</button>
+    </form>
+{% endblock %}

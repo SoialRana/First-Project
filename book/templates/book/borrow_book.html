@@ -1,0 +1,19 @@
+<!-- borrow_book.html -->
+{% extends 'base.html' %}
+
+{% block title %}Borrow Book{% endblock %}
+
+{% block content %}
+    <h1>Borrow Book</h1>
+    <form method="post">
+        {% csrf_token %}
+        <!-- Add input fields for book details, e.g., book title and author -->
+        <label for="book_title">Book Title:</label>
+        <input type="text" name="book_title" id="book_title" required>
+        
+        <label for="book_author">Book Author:</label>
+        <input type="text" name="book_author" id="book_author" required>
+
+        <button type="submit">Borrow</button>
+    </form>
+{% endblock %}

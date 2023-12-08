@@ -1,0 +1,53 @@
+
+{% extends 'base.html' %}
+
+<body>
+{% block content %}
+
+    <div class="tablinks">
+        <button onclick="opentab(name)" class="link" name="new_book">New Book</button>
+        <button onclick="opentab(name)" class="link" name="new_book_instance">New Book Instance</button>
+    </div>
+
+    <div id="new_book" class="books">
+        <form method="POST" action="add_new_book" class="form-inline">
+            {% csrf_token %}
+        <label>Book Title.</label><br><div>{{form.title}}</div>
+        <label>Book Author.</label><br> <div> {{form.author}}</div>
+        <label>ISBN.</label><br> <div> {{form.isbn}}</div>
+        <br> <button type="submit" class="btn btn-success">Add Book</button> 
+        </form>
+    </div>
+    <br>
+    <div id="new_book_instance" class="books">
+    <form method="POST" action="add_new_book_instance" class="form-inline">
+        {% csrf_token %}
+        <label>Book</label><br><div>{{form_instance.book}}</div>
+        <label>Book Number</label>
+        <div>{{form_instance.book_number}}</div>
+        <br> <button type="submit" class="btn btn-success">Add Book</button> 
+    </form>
+    </div>
+
+<script type="text/javascript">
+    function opentab(tab_name){
+         var tab=document.getElementById(tab_name);
+         var i, tabcontent, tablinks;
+         tabcontent = document.getElementsByClassName("books");
+         for (i = 0; i < tabcontent.length; i++) {
+             tabcontent[i].style.display = "none";
+         }
+         tablinks = document.getElementsByClassName("link");
+         for (i = 0; i < tablinks.length; i++) {
+             tablinks[i].className = tablinks[i].className.replace(" active", "");
+         }
+         tab.style.display = "block";
+
+    }
+
+</script>
+
+{% endblock %}
+</body>
+
+</html>

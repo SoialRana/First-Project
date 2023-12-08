@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>My Wishlist</h1>
+    <ul>
+        {% for book in wishlist.books.all %}
+            <li>
+                {{ book.title }} by {{ book.author }}
+                <form method="post" action="{% url 'remove_from_wishlist' book.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Remove</button>
+                </form>
+            </li>
+        {% empty %}
+            <li>Your wishlist is empty.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
